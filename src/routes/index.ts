@@ -8,6 +8,7 @@ import { authenticate,authorization } from '../middlewares/authMiddleware';
 import variantRouter from './variantRouter';
 import orderRouter from './orderRouter';
 import Uploadrouter from './uploadRouter';
+import MailRouter from './sendMailRouter'
 const router = Router();
 
 router.use('/category',authenticate,authorization(["Admin","User"]), categoryRouter);
@@ -17,4 +18,7 @@ router.use('/product', productRouter);
 router.use('/variant', variantRouter);
 router.use('/order', orderRouter);
 router.use('/upload', Uploadrouter);
+router.use('/SendEmail',MailRouter);
+
+
 export default router;

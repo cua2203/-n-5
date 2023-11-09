@@ -2,12 +2,21 @@
 # const pageIndex = 1; 
 # const pageSize = 10; 
 
+
+
+
+post http://localhost:3001/api/SendEmail/send
+
+{
+    "email":"pcua0064@gmail.com"
+}
+
 # Get http://localhost:3001/api/product/getAll?searchString=lap&pageIndex=1&pageSize=5
 # Content-Type: application/json
 # Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiZW1haWwiOiJ1c2VyMUBleGFtcGxlLmNvbSIsInBhc3N3b3JkIjoicGFzc3dvcmQxIiwiaGlkZGVuIjowLCJyb2xlcyI6IkFkbWluIiwiaWF0IjoxNjk4ODUxNzM5LCJleHAiOjE2OTg5MzgxMzl9.sAJsb8eVVQObHOJMllkyYIgsH31wqH9Smpo5vfj7oVc
 
-GET http://localhost:3001/api/user/getAll?searchString=user5&pageIndex=1&pageSize=5
-Content-Type: application/json
+# GET http://localhost:3001/api/user/getAll?searchString=user5&pageIndex=1&pageSize=5
+# Content-Type: application/json
 
 
 # POST http://localhost:3001/api/user/login

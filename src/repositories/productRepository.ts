@@ -7,10 +7,10 @@ export class ProductRepository {
 
     }
 
-    async getAll(search_criteria:any): Promise<any> {
+    async getAll(): Promise<any> {
         try {
-            const sql = 'CALL SearchLaptop(?)';
-            const [results] = await this.db.query(sql, [search_criteria]);
+            const sql = 'CALL GetAllLaptop()';
+            const [results] = await this.db.query(sql, []);
             return results;
         } catch (error: any) {
             throw new Error(error.message);
@@ -30,6 +30,7 @@ export class ProductRepository {
 
         }
     }
+
 
     async delete(id: string): Promise<any> {
         try {
