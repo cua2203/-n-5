@@ -6,7 +6,7 @@ const PORT = 3001;
 
 app.use(cors({
   origin: '*',
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ['Content-Type','Authorization'],
   allowedMethods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 

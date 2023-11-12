@@ -12,10 +12,9 @@ export class UserController {
 
   async authenticate(req: Request, res: Response): Promise<void> {
     try {
-      const { username, password } = req.body;
+      const { email, password } = req.body;
 
-      console.log("Hello");
-      const user = await this.userService.authenticate(username, password);
+      const user = await this.userService.authenticate(email, password);
       if (user) {
         const token = generateToken(user);
         user.token = token;

@@ -4,10 +4,10 @@ import { Database } from '../config/database';
 @injectable()
 export class UserRepository {
   constructor(private db: Database) { }
-  async GetUserByAccount(username: string, password: string): Promise<any> {
+  async GetUserByAccount(email: string, password: string): Promise<any> {
     try {
       const sql = 'CALL GetUserWithRoles(?,?)';
-      const [results] = await this.db.query(sql, [username, password]);
+      const [results] = await this.db.query(sql, [email, password]);
       if (Array.isArray(results) && results.length > 0) {
         return results[0];
       }

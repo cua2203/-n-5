@@ -5,11 +5,14 @@
 
 
 
-post http://localhost:3001/api/SendEmail/send
+http://localhost:3001/api/category/getById/3
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBoYW12YW5jdWEiLCJlbWFpbCI6InBoYW1jdWE2NzBAZ21haWwuY29tIiwicGFzc3dvcmQiOiJwYXNzd29yZDEiLCJoaWRkZW4iOjAsInJvbGVzIjoiVXNlciIsImlhdCI6MTY5OTYwNzM2NSwiZXhwIjoxNjk5NjkzNzY1fQ.tWpcMQji1op3vlxYp3q8tDrm5F_yi8YYco9ZRu21rS0
 
-{
-    "email":"pcua0064@gmail.com"
-}
+
+# {
+#     "email":"pcua0064@gmail.com"
+# }
 
 # Get http://localhost:3001/api/product/getAll?searchString=lap&pageIndex=1&pageSize=5
 # Content-Type: application/json

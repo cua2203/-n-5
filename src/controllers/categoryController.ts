@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
 import { CategoryService } from "../services/categoryService";
+import { Icategory } from "../model/category.model";
 
 @injectable()
 export class CategoryController {
