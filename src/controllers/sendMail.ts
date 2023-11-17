@@ -1,20 +1,31 @@
 import { Request, Response } from "express";
 import { injectable } from "tsyringe";
-import { MailDataRequired } from '@sendgrid/mail';
 import sgMail from '@sendgrid/mail';
+import {config} from '../config/config'
 
 @injectable()
 
 export class SendMail {
 
+    private apikey = config.apiKey;
+    private fromEmail = config.fromEmail;
+
     sendMail(req: Request, res: Response) {
-        sgMail.setApiKey("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");
+        sgMail.setApiKey(this.apikey);
         const msg = {
             to: 'phamcua670@gmail.com', // Change to your recipient
-            from: 'pcua0064@gmail.com', // Change to your verified sender
+            from: this.fromEmail, // Change to your verified sender
             subject: 'Sending with SendGrid is Fun',
-            text: 'and easy to do anywhere, even with Node.js',
-            html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+            // text: 'and easy to do anywhere, even with Node.js',
+            html: `
+            <html>
+              <body>
+                <h1>Xin chào!</h1>
+                <p>Đây là nội dung của email.</p>
+                 <a href="http://localhost:4200/">Trang chủ</a>
+              </body>
+            </html>
+          `,
         }
 
         sgMail

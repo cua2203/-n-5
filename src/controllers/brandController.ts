@@ -43,12 +43,12 @@ export class BrandController {
 
   async update(req: Request, res: Response): Promise<void> {
     try {
-      const cat:{id:any,name:any} = req.body;
-      const results = await this.service.update(cat);   
+      const brand:{brand_id:number,brand_name:string,image:string} = req.body;
+      const results = await this.service.update(brand);   
    
         res.json({ message: 'Đã cập nhật thành công',results:results});
       } catch (error: any) {
-        res.json({ message: error.message, results:false,log:typeof(req.body)});
+        res.json({ message: error.message, results:false});
       }
   }
 
@@ -58,7 +58,7 @@ export class BrandController {
     try {
       const cat = req.body ;
       const results = await this.service.add(cat);
-      res.json({ message: 'Đã thêm mới thành công',results:results,danhmuc:req.body});
+      res.json({ message: 'Đã thêm mới thành công',results:results});
     } catch (error: any) {
       res.json({ message: error.message, results:false });
     }

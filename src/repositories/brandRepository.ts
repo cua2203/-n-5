@@ -19,7 +19,7 @@ export class BrandRepository {
 
     async getById(id: string): Promise<any> {
         try {
-            const sql = 'CALL GetBrandId(?)';
+            const sql = 'CALL GetBrandById(?)';
             const [results] = await this.db.query(sql, [id]);
             if (Array.isArray(results) && results.length > 0) {
                 return results[0];
@@ -42,11 +42,11 @@ export class BrandRepository {
         }
     }
 
-    async update(cat: any): Promise<any> {
+    async update(brand: any): Promise<any> {
         try {
-            const sql = 'CALL UpdateBrand(?, ?)';
+            const sql = 'CALL UpdateBrand(?, ?, ?)';
 
-            await this.db.query(sql, [cat.id, cat.name]);
+            await this.db.query(sql, [brand.brand_id, brand.brand_name,brand.image]);
             return true;
         } catch (error: any) {
             throw new Error(error.message);
@@ -56,7 +56,7 @@ export class BrandRepository {
         try {
             const sql = 'CALL AddBrand(?,?)';
 
-            await this.db.query(sql, [cat.name,cat.image]);
+            await this.db.query(sql, [cat.brand_name,cat.image]);
             return true;
         } catch (error: any) {
             throw new Error(error.message);
