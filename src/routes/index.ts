@@ -12,9 +12,9 @@ import MailRouter from './sendMailRouter'
 const router = Router();
 
 router.use('/category',authenticate,authorization(["Admin","User"]), categoryRouter);
-router.use('/brand', brandRouter);
+router.use('/brand',authenticate,authorization(["Admin","User"]), brandRouter);
 router.use('/user', userRouter);
-router.use('/product', productRouter);
+router.use('/product',authenticate,authorization(["Admin","User"]), productRouter);
 router.use('/variant', variantRouter);
 router.use('/order', orderRouter);
 router.use('/upload', Uploadrouter);

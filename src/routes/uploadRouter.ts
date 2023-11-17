@@ -14,5 +14,11 @@ Uploadrouter.post('/single', (req, res) => {
 Uploadrouter.post('/multi', (req, res) => {
   uploadController.uploadMultiFiles(req, res);
 });
+Uploadrouter.post('/delete/:imagePath', (req, res) => {
+  uploadController.deleteImage(req, res);
+});
+Uploadrouter.get('/getImage', (req, res) => {
+  uploadController.getImage(req, res);
+});
 
 export default Uploadrouter;

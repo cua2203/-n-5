@@ -21,7 +21,7 @@ export class BrandService {
   async add(cat:any): Promise<any> {
     return this.brand.add(cat);
   }
-  async update(cat:any): Promise<any> {
-    return this.brand.update(cat);
+  async update(brand:any): Promise<any> {
+    return this.brand.update(brand);
   }
 }

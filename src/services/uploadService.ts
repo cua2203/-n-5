@@ -4,6 +4,8 @@ import multer from 'multer';
 import path from 'path';
 const fs = require('fs');
 
+
+
 class UploadService {
   uploadFile(req :Request, res : Response, des: any) {
 
@@ -18,7 +20,7 @@ class UploadService {
         cb(null, uploadDirectory);
       },
       filename: (req, file, cb) => {
-        const filename = `${Date.now()}-${file.originalname}`;
+        const filename = `${Date.now()}${file.originalname}`;
         cb(null, filename);
       },
     });
@@ -32,7 +34,7 @@ class UploadService {
       }
       if (req.file) {
         const filePath = path.join(__dirname, uploadDirectory, req.file.filename);
-        return res.status(200).send(`File uploaded to: ${filePath}`);
+        return res.status(200).json({filename:req.file.filename});
       } else {
         return res.status(400).send('No file uploaded.');
       }
@@ -62,10 +64,10 @@ class UploadService {
     upload(req, res, (err) =>{
    
       if (err) {
-        return res.status(400).send(err);
+        return res.status(400).send({err:err});
       }
 
-      return res.status(200).send("Success!");
+      return res.status(200).json("Success!");
     });
   }
 }
