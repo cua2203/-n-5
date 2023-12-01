@@ -14,16 +14,19 @@ export class ProductController {
       const pageIndex = Number(req.query.pageIndex) || 1;
       const pageSize = Number(req.query.pageSize) || 100;
 
-      const data = await this.service.getAll();
+      const data0 = await this.service.getAll();
+      console.log(data0);
+      const data = _.filter(data0, (item: any) => {return item.hidden==0});
+      console.log(data);
 
       if (data && data.length > 0) {
         var datasort: any;
         switch (req.query.sort) {
-          case '1': datasort = _.orderBy(data, 'laptop_name', 'asc'); break;;
-          case '2': datasort = _.orderBy(data, 'laptop_name', 'desc'); break;
-          case '3': datasort = _.orderBy(data, 'laptop_id', 'asc'); break;
-          case '4': datasort = _.orderBy(data, 'laptop_id', 'desc'); break;
-          default: datasort = _.orderBy(data, 'laptop_id', 'asc'); break;
+          case '3': datasort = _.orderBy(data, 'laptop_name', 'asc'); break;;
+          case '4': datasort = _.orderBy(data, 'laptop_name', 'desc'); break;
+          case '2': datasort = _.orderBy(data, 'id', 'asc'); break;
+          case '1': datasort = _.orderBy(data, 'id', 'desc'); break;
+          default: datasort = _.orderBy(data, 'id', 'asc'); break;
         }
 
         var dataSearch = _.filter(datasort, (item: any) => {
@@ -89,6 +92,8 @@ export class ProductController {
       res.json({ message: error.message, results: false });
     }
   }
+
+  
   async export(req: Request, res: Response): Promise<void> {
     try {
       

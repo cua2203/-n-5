@@ -14,6 +14,9 @@ export class VariantService {
   async getAll(): Promise<any> {
     return this.variant.getAll();
   }
+  async getByLaptopId(id: string): Promise<any> {
+    return this.variant.getByLaptopId(id);
+  }
 
   async getById(id: string): Promise<any> {
     return this.variant.getById(id);

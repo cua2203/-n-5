@@ -52,6 +52,20 @@ export class VariantController {
             res.json({ message: error.message });
         }
     }
+
+    async getByLaptopId(req: Request, res: Response): Promise<void> {
+        try {
+            const id = req.params.id;
+            const category = await this.service.getByLaptopId(id);
+            if (category) {
+                res.json(category);
+            } else {
+                res.json({ message: 'Bản ghi không tồn tại' });
+            }
+        } catch (error: any) {
+            res.json({ message: error.message });
+        }
+    }
     async delete(req: Request, res: Response): Promise<void> {
         try {
             const id = req.params.id;
