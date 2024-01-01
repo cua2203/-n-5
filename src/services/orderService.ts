@@ -18,6 +18,9 @@ export class OrderService {
   async getOrderDetail(id:string):Promise<any>{
     return this.repository.getOrderDetail(id);
   }
+  async getOrderById(id:string):Promise<any>{
+    return this.repository.getOrderById(id);
+  }
   async Process(id:string):Promise<any>{
     return this.repository.Process(id);
   }

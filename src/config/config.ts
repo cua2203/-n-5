@@ -11,7 +11,7 @@ export const config = {
     secret: process.env.JWT_SECRET || "thong tin khoa bi mat",
     expiresIn: process.env.JWT_EXPIRES_IN || "24h",
   },
-  apiKey:"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",
+  apiKey:"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",
   fromEmail : 'pcua0064@gmail.com',
   imagePath:'D:\\Kì 1 năm 4\\Đồ án 5\\uploads\\category\\',
 };

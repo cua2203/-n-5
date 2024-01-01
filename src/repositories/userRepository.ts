@@ -16,11 +16,23 @@ export class UserRepository {
       throw new Error(error.message);
     }
   }
+  async GetOne(email: string): Promise<any> {
+    try {
+      const sql = 'CALL GetUser(?)';
+      const [results] = await this.db.query(sql, [email]);
+      if (Array.isArray(results) && results.length > 0) {
+        return results[0];
+      }
+      return null;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
 
   async Register(user: any): Promise<any> {
     try {
       const sql = 'CALL Register(?)';
-      await this.db.query(sql, [user]);
+      await this.db.query(sql, [JSON.stringify(user)]);
       return true;
     }
     catch (error: any) {

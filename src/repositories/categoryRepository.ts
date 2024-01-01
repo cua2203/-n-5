@@ -44,7 +44,7 @@ export class CategoryRepository {
     try {
       const sql = 'CALL UpdateCategory(?, ?)';
       
-      await this.db.query(sql, [cat.id, cat.name]);
+      await this.db.query(sql, [cat.category_id, cat.category_name]);
       return true;
     } catch (error: any) {
       throw new Error( error.message);
@@ -54,7 +54,7 @@ export class CategoryRepository {
     try {
       const sql = 'CALL AddCategory(?)';
       
-      await this.db.query(sql, [ cat.name]);
+      await this.db.query(sql, [ cat]);
       return true;
     } catch (error: any) {
       throw new Error( error.message);

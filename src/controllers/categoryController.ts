@@ -38,13 +38,15 @@ export class CategoryController {
       const category = await this.service.delete(id);   
       res.json({message:"Done!"})
     } catch (error: any) {
-      res.json({ message: error.message });
+      res.json({ message: error });
     }
   }
 
   async update(req: Request, res: Response): Promise<void> {
     try {
-      const cat:{id:any,name:any} = req.body;
+      console.log(req.body);
+      const cat:{category_id:any,category_name:any,status:any} = req.body;
+      console.log(cat);
       const results = await this.service.update(cat);   
    
         res.json({ message: 'Đã cập nhật thành công',results:results});
@@ -57,8 +59,10 @@ export class CategoryController {
 
   async add(req: Request, res: Response): Promise<void> {
     try {
+
+
       const cat = req.body ;
-      const results = await this.service.add(cat);
+      const results = await this.service.add(cat.category_name);
       res.json({ message: 'Đã thêm mới thành công',results:results,danhmuc:req.body});
     } catch (error: any) {
       res.json({ message: error.message, results:false });

@@ -9,7 +9,16 @@ export class ProductRepository {
 
     async getAll(): Promise<any> {
         try {
-            const sql = 'CALL GetAllLaptop()';
+            const sql = 'CALL GetAllProduct()';
+            const [results] = await this.db.query(sql, []);
+            return results;
+        } catch (error: any) {
+            throw new Error(error.message);
+        }
+    }
+    async getAllwithVariants(): Promise<any> {
+        try {
+            const sql = 'CALL get_products_with_variants()';
             const [results] = await this.db.query(sql, []);
             return results;
         } catch (error: any) {
@@ -34,7 +43,7 @@ export class ProductRepository {
 
     async delete(id: string): Promise<any> {
         try {
-            const sql = 'CALL HideLaptop(?)';
+            const sql = 'CALL HideProduct(?)';
 
             await this.db.query(sql, [id]);
             return true;

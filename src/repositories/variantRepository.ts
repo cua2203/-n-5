@@ -44,6 +44,21 @@ export class VariantRepository {
         }
     }
 
+    
+    async getByLaptopId(id: string): Promise<any> {
+        try {
+            const sql = 'CALL getVariantByProductId(?)';
+            const [results] = await this.db.query(sql, [id]);
+            if (Array.isArray(results) && results.length > 0) {
+                return results;
+            }
+            return null;
+        } catch (error: any) {
+            throw new Error(error.message);
+
+        }
+    }
+
     async delete(id: string): Promise<any> {
         try {
             const sql = 'CALL HideVariant(?)';
