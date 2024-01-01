@@ -14,6 +14,9 @@ export class ProductService {
   async getAll(): Promise<any> {
     return this.product.getAll();
   }
+  async getAllwithVariants(): Promise<any> {
+    return this.product.getAllwithVariants();
+  }
 
   async getById(id: string): Promise<any> {
     return this.product.getById(id);

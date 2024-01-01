@@ -15,4 +15,3 @@ variantRouter.post('/add', variantController.add.bind(variantController));
 variantRouter.put('/update', variantController.update.bind(variantController));
 
 export default variantRouter;
-// /:searchString/:pageIndex/:pageSize

@@ -16,6 +16,15 @@ export class ProductRepository {
             throw new Error(error.message);
         }
     }
+    async getAllwithVariants(): Promise<any> {
+        try {
+            const sql = 'CALL get_products_with_variants()';
+            const [results] = await this.db.query(sql, []);
+            return results;
+        } catch (error: any) {
+            throw new Error(error.message);
+        }
+    }
 
     async getById(id: string): Promise<any> {
         try {
@@ -30,8 +39,6 @@ export class ProductRepository {
 
         }
     }
-
-    
 
 
     async delete(id: string): Promise<any> {

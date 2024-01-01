@@ -4,6 +4,7 @@ import { config } from '../config/config';
 import { injectable } from "tsyringe";
 import { UserService } from '../services/userService';
 import { generateToken } from '../config/jwt';
+import argon2 from 'argon2';
 
 @injectable()
 export class UserController {
@@ -13,9 +14,14 @@ export class UserController {
   async authenticate(req: Request, res: Response): Promise<void> {
     try {
       const { email, password } = req.body;
+      let hashedPassword = await this.userService.GetOne(email);
+      hashedPassword=hashedPassword.password;
+ 
 
-      const user = await this.userService.authenticate(email, password);
-      if (user) {
+      let result=await argon2.verify(hashedPassword, password);
+     
+      if (result) {
+        const user = await this.userService.authenticate(email, hashedPassword);
         const token = generateToken(user);
         user.token = token;
         res.json(user);
@@ -23,15 +29,15 @@ export class UserController {
         res.status(401).json({ message: "Sai mật tài khoản hoặc mật khẩu" });
       }
     } catch (error: any) {
-      res.json({ message: error.message });
+      res.json({ message: error.message,alo:'alo' });
     }
   }
 
   async register(req: Request, res: Response): Promise<any> {
     try {
-      const { username, email, password, phone_number } = req.body;
-      let user = { username, email, password, phone_number };
-      const results = await this.userService.Register(JSON.stringify(user));
+      const { username, email, password, phone_number,role_id } = req.body;
+      let user = { username, email, password, phone_number,role_id };
+      const results = await this.userService.Register(user);
 
       if (results) {
         res.json({ message: "Đăng ký thành công !" });

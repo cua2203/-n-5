@@ -15,14 +15,12 @@ export class ProductController {
       const pageSize = Number(req.query.pageSize) || 100;
 
       const data0 = await this.service.getAll();
-      console.log(data0);
-      const data = _.filter(data0, (item: any) => {return item.hidden==0});
-      console.log(data);
+      const data = _.filter(data0, (item: any) => {return item.status==1});
 
       if (data && data.length > 0) {
         var datasort: any;
         switch (req.query.sort) {
-          case '3': datasort = _.orderBy(data, 'laptop_name', 'asc'); break;;
+          case '3': datasort = _.orderBy(data, 'laptop_name', 'asc'); break;
           case '4': datasort = _.orderBy(data, 'laptop_name', 'desc'); break;
           case '2': datasort = _.orderBy(data, 'id', 'asc'); break;
           case '1': datasort = _.orderBy(data, 'id', 'desc'); break;
@@ -47,6 +45,23 @@ export class ProductController {
       res.json({ message: error.message });
     }
   }
+
+
+  async getAllwithVariants(req: Request, res: Response): Promise<void> {
+    try {
+
+      const product = await this.service.getAllwithVariants();
+      if (product) {
+        res.json(product);
+      } else {
+        res.json({ message: 'Bản ghi không tồn tại' });
+      }
+    } catch (error: any) {
+      res.json({ message: error.message });
+    }
+  }
+
+
   async getById(req: Request, res: Response): Promise<void> {
     try {
       const id = req.params.id;

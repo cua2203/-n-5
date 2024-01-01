@@ -7,6 +7,7 @@ const productRouter = Router();
 const productController = container.resolve(ProductController);
 
 productRouter.get('/getAll', productController.getAll.bind(productController));
+productRouter.get('/getWithVariant', productController.getAllwithVariants.bind(productController));
 productRouter.get('/getById/:id', productController.getById.bind(productController));
 productRouter.delete('/delete/:id', productController.delete.bind(productController));
 productRouter.get('/export', productController.export.bind(productController));

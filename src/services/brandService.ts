@@ -5,7 +5,6 @@ import {BrandRepository } from '../repositories/brandRepository';
 @injectable()
 export class BrandService {
   constructor(private brand: BrandRepository) {
-
   }
 
   async getAll(): Promise<any> {
