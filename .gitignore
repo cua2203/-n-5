@@ -8,4 +8,4 @@ yarn-error.log
 /out-tsc
 /bazel-out
 
-/src/config
+/src/config/config.ts
